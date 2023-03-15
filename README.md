@@ -55,5 +55,7 @@ Preprocessing functions are:
 normalized_sentence()
 
 tokenizer.texts_to_sequences()
+
 pad_sequences()
+
 le.inverse_transform
