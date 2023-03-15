@@ -7,20 +7,23 @@ Steps:
 1. You just define your LSTM architecture as given in my code.
 
 # Build neural network architecture
-# In[82]:
-adam = Adam(learning_rate=0.005)
-# In[83]:
 model = Sequential()
+
 model.add(Embedding(vocabSize, embedding_dim, input_length=X_train.shape[1], weights=[embedding_matrix], trainable=False))
+
 #model.add(Bidirectional(LSTM(256, dropout=0.2,recurrent_dropout=0.2, return_sequences=True)))
+
 model.add(Bidirectional(LSTM(128, dropout=0.2,recurrent_dropout=0.2, return_sequences=True)))
+
 model.add(Bidirectional(LSTM(64, dropout=0.2,recurrent_dropout=0.2, return_sequences=True)))
+
 model.add(Bidirectional(LSTM(32, dropout=0.2,recurrent_dropout=0.2)))
 #model.add(Bidirectional(LSTM(12, dropout=0.2,recurrent_dropout=0.2)))
+
 model.add(Dense(6, activation='softmax'))
 
 
-2. You don't have to train this Neural Network by downloading training and testing data again. Just load the pre-trained model (that training was done by me) .
+2. A new user don't have to train this Neural Network by downloading training and testing data again. Just load the pre-trained model (that training was done by me) .
 Pre-trained model file : Kaggle_MultiClass.h5
 
 Using below code:
@@ -30,7 +33,9 @@ transferredModel = keras.models.load_model("Kaggle_MultiClass.h5")
 Follow the below codes: 
 
 sentence= 'my elder brother is dead'
+
 print(sentence)
+
 sentence = normalized_sentence(sentence)
 sentence = tokenizer.texts_to_sequences([sentence])
 sentence = pad_sequences(sentence, maxlen=229, truncating='pre')
