@@ -37,10 +37,15 @@ sentence= 'my elder brother is dead'
 print(sentence)
 
 sentence = normalized_sentence(sentence)
+
 sentence = tokenizer.texts_to_sequences([sentence])
+
 sentence = pad_sequences(sentence, maxlen=229, truncating='pre')
+
 result = le.inverse_transform(np.argmax(model.predict(sentence), axis=-1))[0]
+
 proba =  np.max(transferredModel.predict(sentence))
+
 print(f"{result} : {proba}\n\n") 
 
 Important Note:
@@ -48,6 +53,7 @@ Please do the preprocessing of any given sentence that you are interested to fin
 Preprocessing functions are:
 
 normalized_sentence()
+
 tokenizer.texts_to_sequences()
 pad_sequences()
 le.inverse_transform
